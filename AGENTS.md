@@ -1,37 +1,24 @@
-# Guia para AGENTES
+# Guia de Agentes
 
-- Armazene prompts ou scripts de agentes personalizados em `server/utils/agents`.
-- Defina as chaves de API (Google, Bing, Tavily, etc.) em `server/.env`.
-- Para desativar a telemetria, use `DISABLE_TELEMETRY=true` no mesmo `.env`.
-- Consulte a documentação original do AnythingLLM para integração detalhada.
+Este projeto permite a criação de agentes de IA personalizados através de scripts armazenados em `server/utils/agents`.
 
-# Configuracao de Agentes
-
-Guia rapido para organizar scripts de agentes, flows e variaveis de ambiente no AnythingLLM.
+- Organize os prompts ou scripts adicionais nessa pasta e versione-os no repositório.
+- Copie `server/.env.example` para `.env` e defina as chaves de API necessárias (OpenAI, Google, Bing, etc.).
+- Para desativar a telemetria opcional defina `DISABLE_TELEMETRY=true` no `.env`.
 
 ## Skills personalizados
-
-- Guarde scripts Node.js em `server/storage/plugins/agent-skills`.
-- Reinicie o servidor depois de adicionar ou alterar um skill para que seja recarregado.
-- Sugerimos versionar estes scripts no repositorio para facilitar colaboracao.
+- Scripts Node.js podem ser guardados em `server/storage/plugins/agent-skills`.
+- Reinicie a aplicação após adicionar ou alterar um skill.
 
 ## Flows de agentes
+- Ficheiros `.json` em `server/storage/plugins/agent-flows` descrevem cada flow.
+- A interface de administração permite criar e editar flows sem mexer em código.
+- Se alterar `STORAGE_DIR`, recrie a estrutura `plugins/agent-flows` nesse local.
 
-- Ficheiros `.json` em `server/storage/plugins/agent-flows` definem cada flow.
-- Pode criar ou editar flows pela interface **Admin > Agent Flows**, sem mexer no codigo.
-- Se definir `STORAGE_DIR=/caminho/para/storage`, recrie a estrutura `plugins/agent-flows` nessa pasta.
+## Variáveis de ambiente principais
+- `LLM_PROVIDER` e respetivas chaves (`OPEN_AI_KEY`, `GROQ_API_KEY`, etc.).
+- `OPEN_MODEL_PREF` ou equivalente para indicar o modelo preferido.
+- `STORAGE_DIR` para mudar a localização de `server/storage`.
+- Consulte o `.env.example` para todas as opções disponíveis.
 
-## Variaveis de ambiente
-
-- Copie `server/.env.example` para `.env.development` ou `.env.production` e edite conforme o ambiente.
-- Configure `LLM_PROVIDER` e respectivas chaves (`OPEN_AI_KEY`, `GROQ_API_KEY`, etc.).
-- Utilize `OPEN_MODEL_PREF` ou equivalente para indicar o modelo preferido.
-- Defina `STORAGE_DIR` caso pretenda mudar a pasta `server/storage`.
-- Consulte o `.env.example` para outras variaveis disponiveis.
-- Depois de alterar o `.env`, reinicie o servidor para aplicar as mudancas.
-
-## Telemetria
-
-- Adicione `DISABLE_TELEMETRY=true` ao `.env` para desativar o envio de estatisticas anonimas.
-- Tambem pode desligar na interface em **Sidebar > Privacy**.
-
+Depois de alterar o `.env`, reinicie os serviços para aplicar as mudanças.

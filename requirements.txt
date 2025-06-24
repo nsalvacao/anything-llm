@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+chromadb
+llama-index
+celery
+python-multipart
