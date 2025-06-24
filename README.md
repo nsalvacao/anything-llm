@@ -16,8 +16,6 @@ Modelos locais a correr em CPU podem ter impacto no desempenho. Consulte `server
 O AnythingLLM inclui modelos nativos que correm integralmente em CPU para embeddings, transcrição e geração de texto. Em computadores com poucos recursos o desempenho pode ser afectado. Para alternativas mais leves consulte `server/storage/models/README.md` ou utilize provedores externos como LMStudio ou LocalAI.
 
 
----
-
 ### Product Overview
 
 AnythingLLM is a full-stack application where you can use commercial off-the-shelf LLMs or popular open source LLMs and vectorDB solutions to build a private ChatGPT with no compromises that you can run locally as well as host remotely and be able to chat intelligently with any documents you provide it.
@@ -114,38 +112,32 @@ AnythingLLM divides your documents into objects called `workspaces`. A Workspace
 
 ### Technical Overview
 
-This monorepo consists of six main sections:
+> Este repositório é um fork do projeto original [Mintplex Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm).
+> Está a ser trabalhado, melhorado e personalizado por **Nuno Salvação** ([nunosalvacao.pro](https://nunosalvacao.pro)).
 
-- `frontend`: A viteJS + React frontend that you can run to easily create and manage all your content the LLM can use.
-- `server`: A NodeJS express server to handle all the interactions and do all the vectorDB management and LLM interactions.
-- `collector`: NodeJS express server that processes and parses documents from the UI.
-- `docker`: Docker instructions and build process + information for building from source.
-- `embed` e `browser-extension`: disponíveis em repositórios separados (anythingllm-embed e anythingllm-extension).
 
-## 🛳 Self-Hosting
+## Guia Rápido
 
-Mintplex Labs & the community maintain a number of deployment methods, scripts, and templates that you can use to run AnythingLLM locally. Refer to the table below to read how to deploy on your preferred environment or to automatically deploy.
-| Docker | AWS | GCP | Digital Ocean | Render.com |
-|----------------------------------------|----|-----|---------------|------------|
-| [![Deploy on Docker][docker-btn]][docker-deploy] | [![Deploy on AWS][aws-btn]][aws-deploy] | [![Deploy on GCP][gcp-btn]][gcp-deploy] | [![Deploy on DigitalOcean][do-btn]][do-deploy] | [![Deploy on Render.com][render-btn]][render-deploy] |
+1. Clone o repositório e execute `yarn setup` para gerar os ficheiros `.env`.
+2. Ajuste os valores dos `.env` em `server` e `frontend` com as suas chaves e configurações.
+3. Para desativar a telemetria defina `DISABLE_TELEMETRY=true` nos ficheiros `.env`.
+4. Arranque o projeto com `yarn dev:server` e `yarn dev:frontend`.
 
-| Railway  |  RepoCloud | Elestio |
-| --- | --- | --- |
-| [![Deploy on Railway][railway-btn]][railway-deploy] | [![Deploy on RepoCloud][repocloud-btn]][repocloud-deploy] | [![Deploy on Elestio][elestio-btn]][elestio-deploy] |
+## Sobre o Projeto
 
-[or set up a production AnythingLLM instance without Docker →](./BARE_METAL.md)
+AnythingLLM permite usar modelos de linguagem (LLMs) e bases vetoriais para criar um ChatGPT privado, capaz de processar e referenciar documentos locais ou remotos. O objetivo deste fork é disponibilizar uma versão em português de Portugal com melhorias de usabilidade e integrações adicionais.
 
-## How to setup for development
+### Funcionalidades principais
+- Utilização de LLMs fechados e de código aberto.
+- Gestão de documentos através de "workspaces".
+- Interface web simples e pronta a personalizar.
+- Possibilidade de construir agentes de IA sem código.
 
-- `yarn setup` To fill in the required `.env` files you'll need in each of the application sections (from root of repo).
-  - Go fill those out before proceeding. Ensure `server/.env.development` is filled or else things won't work right.
-- `yarn dev:server` To boot the server locally (from root of repo).
-- `yarn dev:frontend` To boot the frontend locally (from root of repo).
-- `yarn dev:collector` To then run the document collector (from root of repo).
-
-[Learn about documents](./server/storage/documents/DOCUMENTS.md)
-
-[Learn about vector caching](./server/storage/vector-cache/VECTOR_CACHE.md)
+### Melhorias previstas
+- Tradução integral da interface para português.
+- Automatização do processo de instalação e atualizações.
+- Integrações com serviços nacionais e europeus.
+- Exemplos de agentes personalizados focados em produtividade.
 
 ## External Apps & Integrations
 
@@ -200,34 +192,13 @@ We take privacy very seriously, and we hope you understand that we want to learn
 - LGTM from core-team
 
 
+O projeto está disponível sob a [licença MIT](./LICENSE). Pode utilizar, modificar e redistribuir livremente, mantendo sempre esta indicação de licença.
+
+<div align="right">
+
+[![][back-to-top]](#readme-top)
+
+
 </div>
 
----
-
-Copyright © 2025 [Mintplex Labs][profile-link]. <br />
-This project is [MIT](./LICENSE) licensed.
-
 <!-- LINK GROUP -->
-
-[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-222628?style=flat-square
-[profile-link]: https://github.com/mintplex-labs
-[vector-admin]: https://github.com/mintplex-labs/vector-admin
-[assistant-swarm]: https://github.com/Mintplex-Labs/openai-assistant-swarm
-[docker-btn]: ./images/deployBtns/docker.png
-[docker-deploy]: ./docker/HOW_TO_USE_DOCKER.md
-[aws-btn]: ./images/deployBtns/aws.png
-[aws-deploy]: ./cloud-deployments/aws/cloudformation/DEPLOY.md
-[gcp-btn]: https://deploy.cloud.run/button.svg
-[gcp-deploy]: ./cloud-deployments/gcp/deployment/DEPLOY.md
-[do-btn]: https://www.deploytodo.com/do-btn-blue.svg
-[do-deploy]: ./cloud-deployments/digitalocean/terraform/DEPLOY.md
-[render-btn]: https://render.com/images/deploy-to-render-button.svg
-[render-deploy]: https://render.com/deploy?repo=https://github.com/Mintplex-Labs/anything-llm&branch=render
-[render-btn]: https://render.com/images/deploy-to-render-button.svg
-[render-deploy]: https://render.com/deploy?repo=https://github.com/Mintplex-Labs/anything-llm&branch=render
-[railway-btn]: https://railway.app/button.svg
-[railway-deploy]: https://railway.app/template/HNSCS1?referralCode=WFgJkn
-[repocloud-btn]: https://d16t0pc4846x52.cloudfront.net/deploylobe.svg
-[repocloud-deploy]: https://repocloud.io/details/?app_id=276
-[elestio-btn]: https://elest.io/images/logos/deploy-to-elestio-btn.png
-[elestio-deploy]: https://elest.io/open-source/anythingllm
